@@ -6,6 +6,7 @@ import { connectDB } from "./lib/db.js";
 import userRouter from "./routes/userRoutes.js";
 import messageRouter from "./routes/messageRoutes.js";
 import { Server } from "socket.io";
+import itemRoute from "./routes/itemsRoute.js";
 
 const app=express();
 const server= http.createServer(app);
@@ -37,6 +38,7 @@ res.send("server is live"));
 
 app.use("/api/auth",userRouter);
 app.use("/api/messages",messageRouter);
+app.use("/api/items",itemRoute);
 const port=process.env.PORT || 5000;
 
 server.listen(port,()=>console.log("server is running on "+port))
