@@ -1,3 +1,5 @@
+import RecieveCollection from "../models/recieverCollection.js";
+import SendCollection from "../models/senderCollection.js";
 import Send from "../models/sendItem.js";
 
 
@@ -30,6 +32,43 @@ export const recieveItem=async (req,res)=>{
         return res.json({success:false,message:"Please check the code"})
        }
        res.json({success:true,findItem})
+    }
+    catch(error){
+        res.json({success:false,message:error.message})
+    }
+}
+
+export const sendCollection=async(req,res)=>{
+    const {address,phone,email}= req.body;
+    try{
+        if(!address||!phone||!email){
+            res.json({success:false,message:"Please complete the form"})
+        }
+        const collectionForm= await SendCollection.create({
+            address,
+            phone,
+            email
+        })
+        res.json({success:true,collectionForm,message:"data entered successfully"});
+    }
+    catch(error){
+        res.json({success:false,message:error.message})
+    }
+}
+
+
+export const recieverCollection=async(req,res)=>{
+    const {address,phone,email}= req.body;
+    try{
+        if(!address||!phone||!email){
+            res.json({success:false,message:"Please complete the form"})
+        }
+        const collectionForm= await RecieveCollection.create({
+            address,
+            phone,
+            email
+        })
+        res.json({success:true,collectionForm,message:"data entered successfully"});
     }
     catch(error){
         res.json({success:false,message:error.message})

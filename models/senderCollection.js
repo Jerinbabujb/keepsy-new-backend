@@ -2,14 +2,14 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 const sendCollectionSchema = new Schema({
-  item: {
+  address: {
     type: String,
     required: true,
   },
-  location: {
+  phone: {
     type: String,
   },
-  code: {
+  email: {
     type: String,
     required: true,
   },
